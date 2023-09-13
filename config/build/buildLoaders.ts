@@ -4,15 +4,29 @@ import {BuildOptions} from "./types/config";
 
 export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
     const {isDev} = options;
-
+    
+    const fileLoader: webpack.RuleSetRule = {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+            {
+                loader: "file-loader",
+            },
+        ],
+    };
+    
+    const svgLoader: webpack.RuleSetRule = {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+    };
+    
     // If not used TS - add babel-loader
-    const typescriptLoader = {
+    const typescriptLoader: webpack.RuleSetRule = {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
     };
-
-    const cssLoader = {
+    
+    const cssLoader: webpack.RuleSetRule = {
         test: /\.s[ac]ss$/i,
         use: [
             isDev ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -20,9 +34,9 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
                 loader: "css-loader",
                 options: {
                     modules: {
-                        auto: /\.module\./ig,
+                        auto: (resourcePath: string) => resourcePath.includes(".module."),
                         localIdentName: isDev
-                            ? "[path][name]__[local]--[hash:base64:8]"
+                            ? "[path][name]__[local]"
                             : "[hash:base64:8]",
                     },
                 },
@@ -30,8 +44,10 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
             "sass-loader",
         ],
     };
-
+    
     return [
+        fileLoader,
+        svgLoader,
         typescriptLoader,
         cssLoader,
     ];
