@@ -20,8 +20,7 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
                 loader: "css-loader",
                 options: {
                     modules: {
-                        mode: "local",
-                        auto: /\.module\.s[ac]ss/ig,
+                        auto: /\.module\./ig,
                         localIdentName: isDev
                             ? "[path][name]__[local]--[hash:base64:8]"
                             : "[hash:base64:8]",
