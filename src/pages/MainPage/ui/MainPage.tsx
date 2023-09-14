@@ -5,7 +5,6 @@ const MainPage = () => {
     
     return (
         <div>
-            {t('Главная страница1sadf')}
             {t('Главная страница')}
         </div>
     );
