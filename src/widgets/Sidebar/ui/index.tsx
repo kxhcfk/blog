@@ -5,6 +5,7 @@ import {classNames} from "@/shared/lib";
 import styles from './styles.module.scss';
 import {Button} from "@/shared/ui/Button";
 import {ThemeSwitcher} from "@/features/ThemeSwitcher";
+import {LangSwitcher} from "@/features/LangSwitcher/ui";
 
 interface SidebarProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -19,6 +20,7 @@ const Sidebar = (props: SidebarProps) => {
         <div className={classNames(styles.root, collapsed && styles.collapsed)}>
             <Button onClick={handleToggleClick}>Toggle</Button>
             <div className={styles.switchers}>
+                <LangSwitcher/>
                 <ThemeSwitcher/>
             </div>
         </div>
