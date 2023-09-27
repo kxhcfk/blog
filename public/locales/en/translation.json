@@ -2,5 +2,6 @@
   "Тест": "test",
   "Перевод": "translate",
   "Язык": "Russian",
-  "Страница не найдена": "Not found page"
+  "Страница не найдена": "Not found page",
+  "Произошла ошибка": "An error has occurred"
 }
