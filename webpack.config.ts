@@ -14,6 +14,7 @@ export default (env: BuildEnv) => {
     };
 
     const mode = env.mode || 'development';
+    const isAnalyze = Boolean(env.analyze);
     const PORT = env.port || 3000;
 
     const isDev = mode === 'development';
@@ -22,6 +23,7 @@ export default (env: BuildEnv) => {
         mode,
         paths,
         isDev,
+        isAnalyze,
         port: PORT,
     });
 
