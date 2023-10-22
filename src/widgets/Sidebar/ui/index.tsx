@@ -1,30 +1,31 @@
-import {HTMLAttributes, useCallback, useState} from "react";
+import { HTMLAttributes, useCallback, useState } from 'react';
 
-import {classNames} from "@/shared/lib";
+import { classNames } from '@/shared/lib';
 
 import styles from './styles.module.scss';
-import {Button} from "@/shared/ui/Button";
-import {ThemeSwitcher} from "@/features/ThemeSwitcher";
-import {LangSwitcher} from "@/features/LangSwitcher/ui";
+import { Button } from '@/shared/ui/Button';
+import { LangSwitcher } from '@/features/LangSwitcher';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 
-interface SidebarProps extends HTMLAttributes<HTMLDivElement> {}
+interface SidebarProps extends HTMLAttributes<HTMLDivElement> {
+}
 
 const Sidebar = (props: SidebarProps) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    
+
     const handleToggleClick = useCallback(() => {
-        setCollapsed(currentState => !currentState);
+        setCollapsed((currentState) => !currentState);
     }, [collapsed]);
-    
+
     return (
-        <div className={classNames(styles.root, collapsed && styles.collapsed)}>
-            <Button onClick={handleToggleClick}>Toggle</Button>
+        <div data-testid="sidebar" className={classNames(styles.root, collapsed && styles.collapsed)}>
+            <Button data-testid="sidebar-toggle" onClick={handleToggleClick}>Toggle</Button>
             <div className={styles.switchers}>
-                <LangSwitcher/>
-                <ThemeSwitcher/>
+                <LangSwitcher />
+                <ThemeSwitcher />
             </div>
         </div>
     );
 };
 
-export {Sidebar};
+export { Sidebar };
