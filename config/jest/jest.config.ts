@@ -30,11 +30,22 @@ export default {
         'json',
         'node',
     ],
+    modulePaths: [
+        '<rootDir>',
+    ],
+    moduleNameMapper: {
+        '\\.(css|less|scss)$': 'identity-obj-proxy',
+        '@/app/(.*)': '<rootDir>src/app/$1',
+        '@/shared/(.*)': '<rootDir>src/shared/$1',
+        '@/pages/(.*)': '<rootDir>src/pages/$1',
+        '@/widgets/(.*)': '<rootDir>src/widgets/$1',
+    },
     rootDir: '../../',
     testMatch: [
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
     ],
     preset: 'ts-jest',
+    setupFilesAfterEnv: ['<rootDir>config/jest/setup.ts'],
 
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
