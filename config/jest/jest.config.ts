@@ -3,6 +3,8 @@
  * https://jestjs.io/docs/configuration
  */
 
+import path from 'path';
+
 export default {
     // All imported modules in your tests should be mocked automatically
     // automock: false,
@@ -35,10 +37,8 @@ export default {
     ],
     moduleNameMapper: {
         '\\.(css|less|scss)$': 'identity-obj-proxy',
-        '@/app/(.*)': '<rootDir>src/app/$1',
-        '@/shared/(.*)': '<rootDir>src/shared/$1',
-        '@/pages/(.*)': '<rootDir>src/pages/$1',
-        '@/widgets/(.*)': '<rootDir>src/widgets/$1',
+        '\\.svg': path.resolve(__dirname, 'JestEmptyComponent.tsx'),
+        '@/(.*)': '<rootDir>src/$1',
     },
     rootDir: '../../',
     testMatch: [
