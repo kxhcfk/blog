@@ -1,21 +1,16 @@
-import { HTMLAttributes } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib';
+import cls from './NotFoundPage.module.scss';
 
-import styles from './styles.module.scss';
+interface NotFoundPageProps {
+    className?: string;
+}
 
-interface NotFoundPageProps extends HTMLAttributes<HTMLDivElement> {}
-
-const NotFoundPage = (props: NotFoundPageProps) => {
-    const { className, ...otherProps } = props;
-
+export const NotFoundPage = ({ className }: NotFoundPageProps) => {
     const { t } = useTranslation();
-
     return (
-        <div className={classNames(styles.root, className)} {...otherProps}>
+        <div className={classNames(cls.NotFoundPage, {}, [className])}>
             {t('Страница не найдена')}
         </div>
     );
 };
-
-export { NotFoundPage, NotFoundPageProps };

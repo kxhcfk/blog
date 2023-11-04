@@ -6,23 +6,10 @@
 import path from 'path';
 
 export default {
-    // All imported modules in your tests should be mocked automatically
-    // automock: false,
-
-    // Stop running tests after `n` failures
-    // bail: 0,
-
-    // The directory where Jest should store its cached dependency information
-    // cacheDirectory: "C:\\Users\\User\\AppData\\Local\\Temp\\jest",
-
-    // Automatically clear mock calls, instances and results before every test
     clearMocks: true,
+    testEnvironment: 'jsdom',
     coveragePathIgnorePatterns: [
         '\\\\node_modules\\\\',
-    ],
-    testEnvironment: 'jsdom',
-    moduleDirectories: [
-        'node_modules',
     ],
     moduleFileExtensions: [
         'js',
@@ -32,21 +19,22 @@ export default {
         'json',
         'node',
     ],
-    modulePaths: [
-        '<rootDir>',
+    moduleDirectories: [
+        'node_modules',
     ],
-    moduleNameMapper: {
-        '\\.(css|less|scss)$': 'identity-obj-proxy',
-        '\\.svg': path.resolve(__dirname, 'JestEmptyComponent.tsx'),
-        '@/(.*)': '<rootDir>src/$1',
-    },
-    rootDir: '../../',
+    modulePaths: [
+        '<rootDir>src',
+    ],
     testMatch: [
+        // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
     ],
-    preset: 'ts-jest',
-    setupFilesAfterEnv: ['<rootDir>config/jest/setup.ts'],
-
+    rootDir: '../../',
+    setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+    moduleNameMapper: {
+        '\\.s?css$': 'identity-obj-proxy',
+        '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    },
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
 
@@ -95,6 +83,8 @@ export default {
 
     // An array of directory names to be searched recursively up from the requiring module's location
 
+    // An array of file extensions your modules use
+
     // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
     // moduleNameMapper: {},
 
@@ -108,6 +98,7 @@ export default {
     // notifyMode: "failure-change",
 
     // A preset that is used as a base for Jest's configuration
+    // preset: undefined,
 
     // Run tests from one or more projects
     // projects: undefined,

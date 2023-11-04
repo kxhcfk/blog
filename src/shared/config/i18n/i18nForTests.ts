@@ -1,7 +1,7 @@
-import i18nForTests from 'i18next';
+import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-i18nForTests
+i18n
     .use(initReactI18next)
     .init({
         lng: 'ru',
@@ -11,8 +11,7 @@ i18nForTests
         interpolation: {
             escapeValue: false, // not needed for react!!
         },
-
-        resources: { ru: { translation: {} } },
+        resources: { ru: { translations: {} } },
     });
 
-export default i18nForTests;
+export default i18n;

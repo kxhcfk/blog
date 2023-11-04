@@ -1,5 +1,12 @@
-interface classNamesProps extends Array<string | boolean | null | undefined> {}
+type Mods = Record<string, boolean | string>
 
-export const classNames = (...classes: classNamesProps): string => classes
-    .filter((cls) => Boolean(cls) && typeof cls === 'string')
-    .join(' ');
+export function classNames(cls: string, mods: Mods = {}, additional: string[] = []): string {
+    return [
+        cls,
+        ...additional.filter(Boolean),
+        ...Object.entries(mods)
+            .filter(([_, value]) => Boolean(value))
+            .map(([className]) => className),
+    ]
+        .join(' ');
+}

@@ -1,35 +1,40 @@
-import { classNames } from './classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 
 describe('classNames', () => {
-    test('one class of string type', () => {
-        expect(classNames('testClass'))
-            .toBe('testClass');
+    test('with only first param', () => {
+        expect(classNames('someClass')).toBe('someClass');
     });
 
-    test('two class of string type', () => {
-        expect(classNames('testClass', 'twoTestClass'))
-            .toBe('testClass twoTestClass');
+    test('with additional class', () => {
+        const expected = 'someClass class1 class2';
+        expect(classNames('someClass', {}, ['class1', 'class2']))
+            .toBe(expected);
     });
 
-    test('with boolean type', () => {
-        const isActive = false;
-
-        expect(classNames('testClass', isActive && 'twoTestClass'))
-            .toBe('testClass');
+    test('with mods', () => {
+        const expected = 'someClass class1 class2 hovered scrollable';
+        expect(classNames(
+            'someClass',
+            { hovered: true, scrollable: true },
+            ['class1', 'class2'],
+        )).toBe(expected);
     });
 
-    test('with null type', () => {
-        expect(classNames('testClass', null))
-            .toBe('testClass');
+    test('with mods false', () => {
+        const expected = 'someClass class1 class2 hovered';
+        expect(classNames(
+            'someClass',
+            { hovered: true, scrollable: false },
+            ['class1', 'class2'],
+        )).toBe(expected);
     });
 
-    test('with undefined type', () => {
-        expect(classNames('testClass', undefined))
-            .toBe('testClass');
-    });
-
-    test('with true type', () => {
-        expect(classNames('testClass', true))
-            .toBe('testClass');
+    test('with mods undefined', () => {
+        const expected = 'someClass class1 class2 hovered';
+        expect(classNames(
+            'someClass',
+            { hovered: true, scrollable: undefined },
+            ['class1', 'class2'],
+        )).toBe(expected);
     });
 });
